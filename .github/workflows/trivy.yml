@@ -20,6 +20,7 @@ jobs:
           output: 'trivy-results.sarif'
 
       - name: "Upload results to DefectDojo"
+        if: ${{ always() }}
         run: |
           curl -X POST -H 'Authorization: Token d6090b0a240a471c888d38ba80dc5f4de46d277a' -H 'content-type: application/json' https://dojo-poc.prosegur.dev/api/v2/api-token-auth/ -d trivy-results.sarif
 
